@@ -1,0 +1,58 @@
+<table class="type08" 
+	style="	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-left: 1px solid #ccc;
+	margin: 20px 10px;">
+	<thead >
+	<tr>
+	<th scope="cols" style ="	padding: 10px;
+				font-weight: bold;
+				border-top: 1px solid #ccc;
+				border-right: 1px solid #ccc;
+				border-bottom: 2px solid #c00;
+				background: #dcdcd1;" >
+		물품명
+	</th>
+	<th scope="cols" style ="	padding: 10px;
+				font-weight: bold;
+				border-top: 1px solid #ccc;
+				border-right: 1px solid #ccc;
+				border-bottom: 2px solid #c00;
+				background: #dcdcd1;">
+
+		판매금액
+	</th>
+	</tr>
+	</thead>
+	<tbody>
+		#foreach($ItemName in ${ItemMap.keySet()})
+		<tr>
+		<th style = "	width: 150px;
+				padding: 10px;
+				font-weight: bold;
+				vertical-align: top;
+				border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				background: #ececec;">
+			
+		${ItemName}
+		
+		</th>
+		<td style = "width: 350px;
+				padding: 10px;
+				vertical-align: top;
+				border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;" >
+
+		${ItemMap.get($ItemName)}
+
+		</td>
+		</tr>
+		#end        
+	</tbody>
+</table>
+ 	<a href="http://localhost:8080/flearmarket/">
+	<img hspace= "20" align="center" width ="60" src="http://i60.tinypic.com/eqwi3d.png">
+   		FlearMarket
+	</a>	

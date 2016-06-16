@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="user">
+    <select id="selectUserList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				user_no,
+				id,
+				password,
+				name,
+				birthday,
+				email				
+			FROM
+				TB_USER
+        ]]>
+	</select>
+	
+    <select id="getUserPwd" parameterType="java.lang.String" resultType="java.lang.String">
+		<![CDATA[
+			SELECT
+				password
+			FROM
+				TB_USER
+			WHERE
+				id=#{TITLE}
+        ]]>
+	</select>
+	
+	<select id="getUserno" parameterType="java.lang.String" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT
+				user_no
+			FROM
+				TB_USER
+			WHERE
+				id=#{TITLE}
+        ]]>
+	</select>
+	
+	<insert id = "insertMember" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO TB_USER
+			(
+				id,
+				password,
+				name,
+				birthday,
+				email
+			)
+			VALUES
+			(
+			 	#{ID},
+			 	#{PASSWORD},
+			 	#{NAME},
+			 	#{BIRTHDAY},
+			 	#{EMAIL}
+			)
+		]]>	
+	</insert>
+
+
+
+</mapper>

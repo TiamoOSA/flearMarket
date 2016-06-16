@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:cache="http://www.springframework.org/schema/cache"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       					http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+    
+    <!-- email sending by Gmail-->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="flearmarket@gmail.com" />
+		<property name="password" value="flearmarket513" /> 
+		<property name="javaMailProperties">
+    		<props>
+    			<prop key="mail.smtp.starttls.enable">true</prop>
+    			<prop key="mail.transport.protocol">smtp</prop>
+    			<prop key="mail.smtp.auth">true</prop>
+    			<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+    			<prop key="mail.mime.charset">UTF-8</prop>
+    		</props>
+		</property>
+	</bean>
+   
+    <bean id="lgService" class="flearmarket.email.service.EmailNotificationServiceImpl">
+        <property name="mailSender" ref="mailSender"/>
+        <property name="velocityEngine" ref="velocityEngine"/>
+    </bean>
+    
+    <!-- Velocity Engine -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+	  <property name="resourceLoaderPath" value="classpath:/template"/>
+	  <property name="preferFileSystemAccess" value="false"></property>
+	</bean>
+	
+</beans>
+
+
+
+	

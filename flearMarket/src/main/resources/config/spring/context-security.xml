@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    	 ">
+
+     <context:component-scan base-package="flearmarket"></context:component-scan>
+   
+    <!--  
+    <http auto-config='true'>
+        <intercept-url pattern="/**" access="ROLE_USER" />
+    </http>
+       -->
+    
+  
+    <http auto-config="false" >
+ 	    <intercept-url pattern="/include/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+ 	    <intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+ 	    <intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    	<intercept-url pattern="/login/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    	<intercept-url pattern="/**" access="ROLE_USER" />
+                     
+  
+    	<form-login
+    	 login-page="/login/login.do" default-target-url="/login/login.do"
+			authentication-failure-url="/login/loginFail.do" />		
+    
+    	<logout 
+    	logout-success-url="/login/login.do" 
+    	invalidate-session="true" 
+    	/>    	 
+ 
+    	<session-management> 
+ 			<concurrency-control max-sessions="1" expired-url="/login/login.do"/> 
+ 		</session-management> 
+ 		
+    </http>      
+
+    
+    <beans:bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
+    
+   <!--  <beans:bean id="saltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+        <beans:property name="userPropertyToUse" value="username" />
+    </beans:bean>-->
+    
+    <authentication-manager >    	    	
+   		<authentication-provider ref="memberAuthenticationProvider" />
+    	<authentication-provider user-service-ref="memberService">
+         <!-- <password-encoder ref="encoder">
+            <salt-source ref="saltSource" />
+        </password-encoder>-->
+    </authentication-provider>
+    	 <!--<authentication-provider user-service-ref="memberService" /> -->  
+    </authentication-manager>
+  <!--  context:component-scan이 문제 였음.. 잘 모르곘다. -->
+  
+</beans:beans>
+
+
+
+
+
+
+<!-- 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+           
+           
+           <http auto-config='true'>
+        <intercept-url pattern="/**" access="ROLE_USER" />
+    </http>
+           
+  
+    <http auto-config="false" >
+        <intercept-url pattern="/login/main.do" access="ROLE_USER" />              
+  
+    	<form-login
+       	 login-processing-url="/j_spring_security_check.do"
+    	 login-page="/login/login.do" default-target-url="/login/main.do"
+			authentication-failure-url="/login/loginFail.do" />		
+    
+    	<logout 
+    	logout-url="/j_spring_security_logout.do"
+    	logout-success-url="/login/logout.do"/>    	 
+    	
+    	<session-management> 
+ 			<concurrency-control max-sessions="1" expired-url="/login_duplicate"/> 
+ 		</session-management> 
+    	   	
+    </http>    
+    
+  
+	<beans:bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
+	
+	<authentication-manager >    	    	
+    	<authentication-provider ref="memberService" />   
+    </authentication-manager>
+  
+   <beans:bean id="memberService"
+        class="hyeonwoo.common.service.MemberService">
+    </beans:bean>
+	
+	 <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="guest" password="guest" authorities="ROLE_USER"/>    
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+    
+	<beans:bean id="memberService"
+        class="hyeonwoo.common.service.MemberService">
+    </beans:bean>
+</beans:beans>
+
+ -->
