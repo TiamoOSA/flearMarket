@@ -89,13 +89,13 @@ public class EmailNotificationServiceImpl implements EmailNotificationService {
 			 	*	//  vm에서 ketset을 못찾냐
 			 	*  String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "foo.vm", "utf-8", targetItemMap);
 			 	*/
-				    String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "e/EmailNotifyToAdmin.vm", "utf-8", model);
+				    String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "EmailNotifyToAdmin.vm", "utf-8", model);
 				    mimeMessageHelper.setText(text, true);
 			 		}// end preapre method
 			  	
 		  };
 		  		log.debug("User Name  :" + userName);
-		  		log.debug("Admin address :"+ "flearmarket@gmail.com" );
+		  		log.debug("Admin address :"+ "flearmarket@gmail.com" );					// 관리자 이메일 처리 수정 필요
 			  	log.debug("ItemMap info  :" + commandMap.entrySet());
 			  	this.mailSender.send(preparator);
 			  	

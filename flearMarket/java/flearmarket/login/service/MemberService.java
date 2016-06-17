@@ -34,7 +34,7 @@ Logger log = Logger.getLogger(this.getClass());
 		MemberUserDetails user = new MemberUserDetails();
         user.setUsername(username);
         
-        if (password== null) throw new UsernameNotFoundException("������ ������ ã�� �� �����ϴ�.");
+        if (password== null) throw new UsernameNotFoundException("UsernameNotFoundException");
         
         user.setPassword(password);
         user.setUserno(userDAO.getUserno(username));

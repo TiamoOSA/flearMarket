@@ -6,15 +6,15 @@
 	margin: 20px 10px;">
 	<thead >
 	<tr>
-	<th scope="cols" style ="	padding: 10px;
+	<th scope="row" style ="	padding: 10px;
 				font-weight: bold;
 				border-top: 1px solid #ccc;
 				border-right: 1px solid #ccc;
 				border-bottom: 2px solid #c00;
-				background: #dcdcd1;" >
-		물품명
-	</th>
-	<th scope="cols" style ="	padding: 10px;
+				background: #dcdcd1;">
+
+		기부금액
+	<th scope="row" style ="	padding: 10px;
 				font-weight: bold;
 				border-top: 1px solid #ccc;
 				border-right: 1px solid #ccc;
@@ -23,33 +23,16 @@
 
 		판매금액
 	</th>
-	</tr>
-	</thead>
+
 	<tbody>
-		#foreach($ItemName in ${ItemMap.keySet()})
-		<tr>
-		<th style = "	width: 150px;
-				padding: 10px;
-				font-weight: bold;
-				vertical-align: top;
-				border-right: 1px solid #ccc;
-				border-bottom: 1px solid #ccc;
-				background: #ececec;">
+
+			<tr>
+				<th scope="row">1000 원 </th>
 			
-		${ItemName}
-		
-		</th>
-		<td style = "width: 350px;
-				padding: 10px;
-				vertical-align: top;
-				border-right: 1px solid #ccc;
-				border-bottom: 1px solid #ccc;" >
+				<th scope="row">10000 원</th>
+			
+			</tr>
 
-		${ItemMap.get($ItemName)}
-
-		</td>
-		</tr>
-		#end        
 	</tbody>
 </table>
  	<a href="http://localhost:8080/flearmarket/">
